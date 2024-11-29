@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Jack Simpson</title>
+    <link rel="stylesheet" href="project.css">
+    <link rel="icon" href="logo.webp" type="image/x-icon">
+    <meta name="description" content="Contact Me!">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.js"></script>
+    <style>
+        body {
+            max-width: 1100px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="wrapper">
+        <div id="topbar">
+            <div id="logo" onclick="location.href='index.html'"></div>
+            <header onclick="location.href='index.html'">
+                <h1>Jack Simpson</h1>
+            </header>
+            <nav><a href="index.html">Home</a> <a href="photographyMain.html">Photography</a> <a href="">About</a> <a
+                    href="contact.html">Contact</a> </nav>
+        </div>
+        <main>
+            <form id="contactForm" action="" method="post">
+                <label for="fullName">Full Name:</label><input minlength="4" type="text" name="fullName" required>
+                <label for="email">Your Email:</label><input type="email" name="email" required>
+                <label for="message">Message:</label><textarea name="message" required></textarea>
+                <input type="submit" id="submit" value="Send">
+            </form>
+        </main>
+        <footer>
+            <p>&copy; Jack Simpson</p>
+        </footer>
+    </div>
+    <script>
+        $(document).ready(function () {
+            $("#contactForm").validate();
+        });
+    </script>
+</body>
+</html>
