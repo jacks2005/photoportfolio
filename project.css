@@ -187,7 +187,8 @@ textarea {
 }
 
 #submit:hover {
-    border-color: rgb(255, 255, 255);
+    background-color: rgb(255, 255, 255);
+    color: black;
     border: solid rgba(255, 0, 0, 0);
 }
 
