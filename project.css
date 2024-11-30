@@ -17,8 +17,8 @@ body {
 }
 
 #wrapper {
-    margin-left: 1em;
-    margin-right: 1em;
+    margin: 1em;
+    margin-bottom: 8px;
 }
 
 header {
@@ -28,14 +28,17 @@ header {
     grid-row: 1;
     text-wrap: nowrap;
     cursor: pointer;
+    padding-top: 4px;
 }
 
 nav {
-    grid-column: 1;
+    grid-column: span 2;
+    grid-row: 2;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 10px;
     margin-top: 1em;
+    width: 100%;
 }
 
 nav a {
@@ -43,17 +46,18 @@ nav a {
     transition: background-color 300ms;
     text-decoration: none;
     background-color: rgb(32, 32, 32);
-    padding: 6px;
-    border-radius: 12px;
+    padding: 10px;
+    border-radius: 10px;
     text-transform: capitalize;
-    width: fit-content;
+    width: 100%;
+    text-align: center;
+    border: solid rgba(255, 0, 0, 0);
 }
 
 
 nav a:hover {
-    background-color: rgb(255, 255, 255);
-    color: black;
-    transition: background-color 300ms;
+    border-color: rgb(255, 255, 255);
+    border: solid;
 }
 
 .hero {
@@ -75,15 +79,15 @@ nav a:hover {
     grid-column: 1;
     grid-row: 1;
     cursor: pointer;
+    border-radius: 5px;
 }
 
 #topbar {
     display: grid;
-    grid-template-columns: 50px 1fr;
+    grid-template-columns: 40px 1fr;
     width: 100%;
     background-color: rgb(62, 62, 62);
     padding: 10px;
-    margin-top: 1em;
     margin-bottom: 1em;
     border-radius: 12px;
     align-items: center;
@@ -102,7 +106,6 @@ p {
 .flexcontent {
     display: flex;
     flex-direction: column;
-    gap: 1em;
 }
 
 .contentheader {
@@ -134,12 +137,12 @@ img {
     padding: 5px;
     text-decoration: none;
     transition: background-color 300ms;
+    border: solid rgba(255, 0, 0, 0);
 }
 
 .photoLinks:hover {
-    background-color: white;
-    color: black;
-    transition: background-color 300ms;
+    border-color: rgb(255, 255, 255);
+    border: solid;
 }
 
 footer {
@@ -149,7 +152,10 @@ footer {
     border-top: solid white 2px;
     margin-top: 1em;
     text-align: center;
-    margin-bottom: 1em;
+}
+
+.footertext {
+    padding-top: 8px;
 }
 
 form {
@@ -176,12 +182,12 @@ textarea {
 
 #submit {
     transition: background-color 300ms;
+    border: solid rgba(255, 0, 0, 0);
 }
 
 #submit:hover {
-    background-color: white;
-    color: black;
-    transition: background-color 300ms;
+    border-color: rgb(255, 255, 255);
+    border: solid rgba(255, 0, 0, 0);
 }
 
 .error {
@@ -209,8 +215,20 @@ textarea {
         grid-row: 1;
     }
 
+    nav a {
+        padding: 6px;
+        padding-left: 9px;
+        padding-right: 9px;
+    }
+
+    nav a:hover {
+        background-color: rgb(255, 255, 255);
+        color: black;
+        transition: background-color 300ms;
+        border: solid rgba(255, 0, 0, 0);
+    }
+
     #topbar {
-        grid-template-columns: 50px 1fr;
         grid-template-rows: 1fr;
     }
     
@@ -220,6 +238,13 @@ textarea {
 
     .content {
         width: auto;
+    }
+    
+    .photoLinks:hover {
+        background-color: rgb(255, 255, 255);
+        color: black;
+        transition: background-color 300ms;
+        border: solid rgba(255, 0, 0, 0);
     }
 
     #gallery {
@@ -246,6 +271,11 @@ textarea {
         transition: box-shadow 300ms;
     }
 
+    #submit:hover {
+        background-color: white;
+        color: black;
+        transition: background-color 300ms;
+    }
 }
 
 @media (min-width:900px){
