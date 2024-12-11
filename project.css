@@ -78,13 +78,36 @@ nav a {
     border-radius: 8px;
     text-transform: capitalize;
     width: 100%;
-    text-align: center;
     border: solid rgba(255, 0, 0, 0);
+}
+
+nav:not(#homeNav) a {
+    text-align: center;
 }
 
 nav a:hover {
     border-color: rgb(255, 255, 255);
     border: solid;
+}
+
+#homeNav {
+    margin-top: 1em;
+    flex-direction: column;
+    text-align: left;
+}
+
+#homeNav a {
+    background-color: rgb(62, 62, 62);
+    padding: 10px;
+}
+
+.selected {
+    background-color: rgb(203, 203, 203);
+    color: black;
+}
+
+.back {
+    width: 100%;
 }
 
 .hero {
@@ -112,8 +135,8 @@ nav a:hover {
 }
 
 p {
-    margin-top: 0;
-    margin-bottom: 0;
+    font-size: 20px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .flexcontent {
@@ -151,13 +174,22 @@ img {
     object-fit: cover;
 }
 
+#morePhotos {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1em;
+}
+
 .photoLinks {
     font-family: monospace;
     font-size: 1.3em;
     background-color: rgb(63, 63, 63);
-    border-radius: 8px;
-    padding: 5px;
+    border-radius: 12px;
+    padding: 12px;
     text-decoration: none;
+    display: block;
+    text-align: center;
 }
 
 footer {
@@ -255,6 +287,10 @@ textarea {
         padding-right: 9px;
     }
 
+    #homeNav a:hover {
+        background-color: rgb(255, 255, 255);
+    }
+
     #topbar {
         grid-template-rows: 1fr;
     }
@@ -285,6 +321,13 @@ textarea {
     img:hover {
         box-shadow: 0px 8px 35px 0px rgba(0, 0, 0, 0.815);
         transition: box-shadow 200ms;
+    }
+
+    #morePhotos {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1em;
     }
 
 }
