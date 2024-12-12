@@ -10,27 +10,30 @@
     <meta name="description" content="Contact Me!">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Ultra&display=swap" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Ultra&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
     <div id="wrapper">
-        <div id="topbar">
-            <div id="logo" onclick="location.href='index.html'"></div>
-            <header onclick="location.href='index.html'">
-                <h1>Jack Simpson</h1>
-            </header>
-            <nav><a href="photographyMain.html"
-                class="linkButton">Photography</a> <a href="contact.html"
-                class="linkButton selected">Contact</a> </nav>
-        </div>
+        <header>
+            <div id="topbar">
+                <div id="logo" onclick="location.href='index.html'"></div>
+
+                <h1 onclick="location.href='index.html'">Jack Simpson</h1>
+
+                <nav><a href="photographyMain.html" class="linkButton">Photography</a> <a href="contact.html"
+                        class="linkButton selected">Contact</a> </nav>
+            </div>
+        </header>
         <main>
             <form id="contactForm" action="https://formspree.io/f/mnnqygoe" method="post">
-                <label for="fullName">Full Name:</label><input minlength="4" type="text" name="fullName" required>
-                <label for="email">Your Email:</label><input type="email" name="email" required>
-                <label for="message">Message:</label><textarea name="message" required></textarea>
+                <input minlength="4" type="text" name="fullName" required placeholder="Full Name">
+                <input type="email" name="email" required placeholder="Email">
+                <textarea name="message" required placeholder="Message"></textarea>
                 <input type="submit" id="submit" value="Send" class="linkButton">
             </form>
         </main>
