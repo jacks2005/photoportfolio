@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="project.css">
     <link rel="icon" href="logo.webp" type="image/x-icon">
     <meta name="description" content="Contact Me!">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,7 +25,9 @@
             <div id="topbar">
                 <div id="logo" onclick="location.href='index.html'"></div>
 
-                <h1 onclick="location.href='index.html'">Jack Simpson</h1>
+                <a class="topHeader" href="index.html">
+                    <img src="photos/header.svg" alt="">
+                </a>
 
                 <nav><a href="photographyMain.html" class="linkButton">Photography</a> <a href="contact.html"
                         class="linkButton selected">Contact</a> </nav>
