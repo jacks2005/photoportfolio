@@ -126,7 +126,7 @@ nav a:hover {
 }
 
 .selected {
-    background-color: rgb(203, 203, 203);
+    background-color: rgb(255, 255, 255);
     color: black;
 }
 
