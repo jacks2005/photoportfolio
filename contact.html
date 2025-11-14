@@ -9,7 +9,6 @@
     <link rel="icon" href="logo.webp" type="image/x-icon">
     <meta name="description" content="Contact Me!">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -36,7 +35,7 @@
         <main>
             <form id="contactForm" action="https://formspree.io/f/mnnqygoe" method="post">
                 <input minlength="4" type="text" name="fullName" required placeholder="Full Name">
-                <input type="email" name="email" required placeholder="Email">
+                <input type="email" name="email" required placeholder="Email" pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$" title="Please enter an email address">
                 <textarea name="message" required placeholder="Message"></textarea>
                 <input type="submit" id="submit" value="Send" class="linkButton">
             </form>
@@ -45,11 +44,5 @@
             <div class="footertext">&copy; Jack Simpson</div>
         </footer>
     </div>
-    <!-- Form Validation JS -->
-    <script>
-        $(document).ready(function () {
-            $("#contactForm").validate();
-        });
-    </script>
 </body>
 </html>
