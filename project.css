@@ -17,7 +17,7 @@ body {
     margin-right: auto;
     margin-top: 1em;
     margin-bottom: 8px;
-    min-width: 385px;
+    min-width: 350px;
 }
 
 *::selection {
@@ -172,10 +172,9 @@ nav a:hover {
 }
 
 #gallery {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: repeat(12, 250px);
-    gap: 16px;
+    column-count: 2;
+    column-gap: 16px;
+    row-gap: 10px;
     width: 100%;
 }
 
@@ -189,6 +188,7 @@ nav a:hover {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    margin-bottom: 10px;
 }
 
 #morePhotos {
@@ -323,15 +323,13 @@ textarea {
     
     #gallery img {
         width: 100%;
-        transition: border 400ms;
-        border: 4px solid;
+        transition: filter 200ms;
         box-sizing: border-box;
-        border-color: rgba(0, 0, 0, 0);
+        break-inside: avoid;
     }
     
     #gallery img:hover {
-        transition: border 400ms;
-        border: 4px solid white
+        filter: brightness(80%);
     }
 
     #morePhotos {
@@ -342,24 +340,34 @@ textarea {
     }
 
     #gallery {
-        grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: repeat(8, 250px);
+        column-count: 2;
+        column-gap: 16px;
     }
 }
 
 @media (min-width:900px){
     #gallery {
-        grid-template-columns: repeat(4, 1fr);
-        grid-template-rows: repeat(6, 250px);
+        column-count: 3;
     }
 }
 
-@media (max-width:475px){
+@media (max-width:500px){
     #gallery {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: repeat(12, 200px);
-        gap: 16px;
-        width: 100%;
+        column-count: 1;
+    }
+}
+
+@media (max-width: 410px){
+    #topbar {
+        grid-template-columns: 0px 100%;
+    }
+
+    #logo {
+        width: 0px;
+    }
+
+    .topHeader{
+        margin-left: auto;
+        margin-right: auto;
     }
 }
