@@ -268,6 +268,30 @@ textarea {
     background-color: rgb(83, 83, 83);
 }
 
+#Instagram-button {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    padding: 0;
+}
+
+#Instagram-button:hover {
+    #Instagram-logo {
+        transition: background-image 300ms;
+        background-image: url(/photos/Instagram_Glyph_Gradient.svg);
+    }
+}
+
+#Instagram-logo {
+    background-image: url(/photos/Instagram_Glyph_White.svg);
+    width: 25px;
+    height: 25px;
+    margin-top: 0;
+    grid-column: 1;
+    grid-row: 1;
+    border-radius: 8px;
+}
+
 /* Responsive Media Queries */
 
 @media (min-width: 650px){
