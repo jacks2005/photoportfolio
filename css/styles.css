@@ -277,8 +277,8 @@ textarea {
 
 #Instagram-button:hover {
     #Instagram-logo {
-        transition: background-image 300ms;
-        background-image: url(/photos/Instagram_Glyph_Gradient.svg);
+        transition: filter 300ms;
+        filter: invert(100%);
     }
 }
 
