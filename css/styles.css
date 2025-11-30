@@ -20,6 +20,12 @@ body {
     min-width: 350px;
 }
 
+header {
+    position: sticky;
+    top: 8px;
+    z-index: 99;
+}
+
 *::selection {
     background-color: white;
     color: black;
