@@ -72,6 +72,9 @@ h2 {
 
 .linkButton {
     transition: background-color 300ms, color 300ms;
+    display: flex;
+    gap: 10px;
+    align-items: center;
 }
 
 .linkButton:hover {
@@ -152,7 +155,6 @@ nav a:hover {
     margin-top: 0;
     grid-column: 1;
     grid-row: 1;
-    cursor: pointer;
     border-radius: 8px;
 }
 
@@ -266,13 +268,6 @@ textarea {
 
 ::-webkit-scrollbar-thumb:hover {
     background-color: rgb(83, 83, 83);
-}
-
-#Instagram-button {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    padding: 0;
 }
 
 #Instagram-button:hover {
