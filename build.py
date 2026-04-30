@@ -4,7 +4,7 @@ photos_folder = "./photos/main"
 template_page = "./template.html"
 home_page = "./index.html"
 
-images = sorted([f for f in os.listdir(photos_folder) if f.lower().endswith(('.webp', '.jpg', '.jpeg', '.png'))])
+images = sorted([f for f in os.listdir(photos_folder) if f.lower().endswith(('.webp', '.jpg', '.jpeg', '.png', '.avif'))])
 
 image_elements = []
 for image in images:
