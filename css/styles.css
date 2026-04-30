@@ -277,6 +277,13 @@ textarea {
     }
 }
 
+#github-button:hover {
+    #github-logo {
+        transition: filter 300ms;
+        filter: invert(100%);
+    }
+}
+
 #Instagram-logo {
     background-image: url(/photos/Instagram_Glyph_White.svg);
     width: 25px;
@@ -286,6 +293,19 @@ textarea {
     grid-row: 1;
     border-radius: 8px;
     transition: filter 300ms;
+    background-size: contain;
+}
+
+#github-logo {
+    background-image: url(/photos/GitHub_Invertocat_White.svg);
+    width: 25px;
+    height: 25px;
+    margin-top: 0;
+    grid-column: 1;
+    grid-row: 1;
+    border-radius: 8px;
+    transition: filter 300ms;
+    background-size: contain;
 }
 
 /* Responsive Media Queries */
