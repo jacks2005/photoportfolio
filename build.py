@@ -4,7 +4,11 @@ photos_folder = "./photos/main"
 template_page = "./template.html"
 home_page = "./index.html"
 
-images = sorted([f for f in os.listdir(photos_folder) if f.lower().endswith(('.webp', '.jpg', '.jpeg', '.png', '.avif'))])
+images = sorted(
+    [f for f in os.listdir(photos_folder) if f.lower().endswith(('.webp', '.jpg', '.jpeg', '.png', '.avif'))],
+    key=lambda f: int(os.path.splitext(f)[0].split('-')[-1]) if os.path.splitext(f)[0].split('-')[-1].isdigit() else f,
+    reverse=True
+)
 
 image_elements = []
 for image in images:
