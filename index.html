@@ -33,7 +33,10 @@
                 <a class="topHeader">
                     <img src="/photos/header.svg" alt="">
                 </a>
-                <nav>
+                <button id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="topnav">
+                    <span class="material-symbols-outlined">menu</span>
+                </button>
+                <nav id="topnav">
                     <a href="https://www.instagram.com/jgs259/" class="linkButton" id="Instagram-button"><div id="Instagram-logo"></div>Instagram</a>
                     <a href="https://github.com/jacks2005" class="linkButton" id="github-button"><div id="github-logo"></div>GitHub</a>
                     <div id="theme-switch" role="group" aria-label="Colour theme">
@@ -983,6 +986,36 @@
             window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function() {
                 if (!getStored()) applyTheme(null);
             });
+
+            (function() {
+                var hamburger = document.getElementById('hamburger');
+                var topnav = document.getElementById('topnav');
+                if (!hamburger || !topnav) return;
+
+                function closeMenu() {
+                    topnav.classList.remove('open');
+                    hamburger.setAttribute('aria-expanded', 'false');
+                    hamburger.querySelector('.material-symbols-outlined').textContent = 'menu';
+                    hamburger.setAttribute('aria-label', 'Open menu');
+                }
+
+                hamburger.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    var isOpen = topnav.classList.toggle('open');
+                    hamburger.setAttribute('aria-expanded', isOpen);
+                    hamburger.querySelector('.material-symbols-outlined').textContent = isOpen ? 'close' : 'menu';
+                    hamburger.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+                    if (isOpen) updateSwitchUI(getStored());
+                });
+
+                document.addEventListener('click', function(e) {
+                    if (!topnav.contains(e.target) && !hamburger.contains(e.target)) closeMenu();
+                });
+
+                window.addEventListener('resize', function() {
+                    if (window.innerWidth >= 860) closeMenu();
+                });
+            })();
         })();
     </script>
 </body>

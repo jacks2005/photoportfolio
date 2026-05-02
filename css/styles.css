@@ -95,7 +95,7 @@ body {
     margin-right: auto;
     margin-top: 1em;
     margin-bottom: 8px;
-    min-width: 350px;
+    min-width: 380px;
     transition: background-color 350ms ease;
 }
 
@@ -119,7 +119,7 @@ main {
 
 #topbar {
     display: grid;
-    grid-template-columns: 52px 1fr;
+    grid-template-columns: 52px 1fr auto;
     width: 100%;
     background-color: var(--bg-secondary);
     padding: 10px;
@@ -143,6 +143,7 @@ footer {
 
 .topHeader {
     width: 300px;
+    max-width: 100%;
     margin-bottom: -11px;
     shape-rendering: crispEdges;
 }
@@ -170,13 +171,53 @@ h2 {
 }
 
 nav {
-    grid-column: span 2;
+    grid-column: span 3;
     grid-row: 2;
     display: flex;
     flex-direction: column;
     gap: 10px;
     margin-top: 1em;
     width: 100%;
+}
+
+#topnav {
+    display: none;
+}
+
+#topnav.open {
+    display: flex;
+    animation: navSlideDown 200ms ease;
+}
+
+@keyframes navSlideDown {
+    from { opacity: 0; transform: translateY(-6px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+#hamburger {
+    grid-column: 3;
+    grid-row: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 7px;
+    border-radius: 8px;
+    color: var(--text-primary);
+    transition: background-color 200ms ease, color 200ms ease;
+}
+
+#hamburger:hover {
+    background-color: var(--hover-bg);
+    color: var(--hover-text);
+}
+
+#hamburger .material-symbols-outlined {
+    font-size: 24px;
+    display: block;
+    line-height: 1;
 }
 
 nav a {
@@ -467,28 +508,9 @@ textarea {
         grid-column: 2;
     }
 
-    nav {
-        grid-column: 3;
-        flex-direction: row;
-        border-top: none;
-        margin-top: 0;
-        padding-top: 0;
-        grid-row: 1;
-    }
-
-    nav a {
-        padding: 7px;
-        padding-left: 9px;
-        padding-right: 9px;
-    }
-
     #homeNav a:hover {
         background-color: var(--hover-bg);
         color: var(--hover-text);
-    }
-
-    #topbar {
-        grid-template-rows: 1fr;
     }
 
     .flexcontent {
@@ -528,6 +550,30 @@ textarea {
     }
 }
 
+@media (min-width: 860px) {
+    #hamburger {
+        display: none;
+    }
+
+    #topnav {
+        display: flex;
+        grid-column: 3;
+        grid-row: 1;
+        flex-direction: row;
+        border-top: none;
+        margin-top: 0;
+        padding-top: 0;
+    }
+
+    #topnav a {
+        padding: 7px 9px;
+    }
+
+    #topbar {
+        grid-template-rows: 1fr;
+    }
+}
+
 @media (min-width: 900px) {
     #gallery {
         grid-template-columns: repeat(4, 1fr);
@@ -548,9 +594,9 @@ textarea {
     }
 }
 
-@media (max-width: 410px){
+@media (max-width: 450px){
     #topbar {
-        grid-template-columns: 0px 100%;
+        grid-template-columns: 0px 1fr auto;
     }
 
     #logo {
