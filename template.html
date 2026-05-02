@@ -2,6 +2,13 @@
 <html lang="en">
 
 <head>
+    <script>
+        (function() {
+            var t = localStorage.getItem('theme');
+            if (t) document.documentElement.setAttribute('data-theme', t);
+            document.documentElement.setAttribute('data-no-transition', '');
+        })();
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Photography | Jack Simpson</title>
@@ -11,7 +18,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
-    <meta name="color-scheme" content="dark">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,300,0,0" rel="stylesheet">
+    <meta name="color-scheme" content="dark light">
     <link rel="preload" href="/photos/logo.webp" as="image">
     <link rel="preload" href="/photos/Instagram_Glyph_White.svg" as="image">
     <link rel="preload" href="/photos/GitHub_Invertocat_White.svg" as="image">
@@ -28,6 +36,12 @@
                 <nav>
                     <a href="https://www.instagram.com/jgs259/" class="linkButton" id="Instagram-button"><div id="Instagram-logo"></div>Instagram</a>
                     <a href="https://github.com/jacks2005" class="linkButton" id="github-button"><div id="github-logo"></div>GitHub</a>
+                    <div id="theme-switch" role="group" aria-label="Colour theme">
+                        <div id="theme-slider"></div>
+                        <button class="theme-option" data-theme-val="null" aria-label="System"><span class="material-symbols-outlined">brightness_auto</span></button>
+                        <button class="theme-option" data-theme-val="light" aria-label="Light"><span class="material-symbols-outlined">light_mode</span></button>
+                        <button class="theme-option" data-theme-val="dark" aria-label="Dark"><span class="material-symbols-outlined">dark_mode</span></button>
+                    </div>
                 </nav>
             </div>
         </header>
@@ -45,6 +59,63 @@
         </footer>
 
     </div>
+
+    <script>
+        (function() {
+            var states = [null, 'light', 'dark'];
+
+            function getStored() { return localStorage.getItem('theme'); }
+
+            function applyTheme(theme) {
+                var root = document.documentElement;
+                if (theme) root.setAttribute('data-theme', theme);
+                else root.removeAttribute('data-theme');
+                updateSwitchUI(theme);
+            }
+
+            function updateSwitchUI(theme) {
+                var sw = document.getElementById('theme-switch');
+                var slider = document.getElementById('theme-slider');
+                if (!sw || !slider) return;
+                var idx = states.indexOf(theme);
+                if (idx < 0) idx = 0;
+                var opts = sw.querySelectorAll('.theme-option');
+                opts.forEach(function(opt, i) {
+                    opt.classList.toggle('active', i === idx);
+                });
+                var swRect = sw.getBoundingClientRect();
+                var optRect = opts[idx].getBoundingClientRect();
+                slider.style.left = (optRect.left - swRect.left) + 'px';
+                slider.style.width = optRect.width + 'px';
+            }
+
+            window.addEventListener('resize', function() { updateSwitchUI(getStored()); });
+
+            window.addEventListener('load', function() {
+                requestAnimationFrame(function() {
+                    requestAnimationFrame(function() {
+                        document.documentElement.removeAttribute('data-no-transition');
+                    });
+                });
+            });
+
+            applyTheme(getStored());
+
+            document.querySelectorAll('.theme-option').forEach(function(opt) {
+                opt.addEventListener('click', function() {
+                    var val = opt.getAttribute('data-theme-val');
+                    var theme = val === 'null' ? null : val;
+                    if (theme) localStorage.setItem('theme', theme);
+                    else localStorage.removeItem('theme');
+                    applyTheme(theme);
+                });
+            });
+
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function() {
+                if (!getStored()) applyTheme(null);
+            });
+        })();
+    </script>
 </body>
 
 </html>
