@@ -13,6 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Photography | Jack Simpson</title>
     <link rel="stylesheet" href="/css/styles.css">
+    <script src="/js/lightbox.js" defer></script>
     <link rel="icon" href="/photos/logo.webp" type="image/x-icon">
     <meta name="description" content="Photography Portfolio">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -61,6 +62,29 @@
             <div class="footertext">&copy; Jack Simpson</div>
         </footer>
 
+    </div>
+
+    <!-- Lightbox -->
+    <div id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer" aria-hidden="true">
+        <div id="lightbox-backdrop"></div>
+        <button id="lightbox-close" aria-label="Close photo viewer">
+            <span class="material-symbols-outlined" aria-hidden="true">close</span>
+        </button>
+        <button id="lightbox-prev" aria-label="Previous photo">
+            <span class="material-symbols-outlined" aria-hidden="true">arrow_back</span>
+        </button>
+        <button id="lightbox-next" aria-label="Next photo">
+            <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span>
+        </button>
+        <div id="lightbox-img-wrap">
+            <div id="lb-slot-a">
+                <img id="lightbox-img-a" src="" alt="">
+            </div>
+            <div id="lb-slot-b">
+                <img id="lightbox-img-b" src="" alt="" aria-hidden="true">
+            </div>
+        </div>
+        <div id="lightbox-counter" aria-live="polite" aria-atomic="true"></div>
     </div>
 
     <script>
