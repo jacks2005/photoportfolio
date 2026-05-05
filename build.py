@@ -11,10 +11,15 @@ images = sorted(
 )
 
 image_elements = []
-for image in images:
+for i, image in enumerate(images):
+    num = os.path.splitext(image)[0].split('-')[-1]
+    alt_text = f"Photo {num}"
     image_elements.append(f'''    <div class="photoGrid">
-        <a href="/photos/main/{image}">
-            <img src="/photos/main/{image}" alt="" loading="lazy">
+        <a href="/photos/main/{image}" data-index="{i}" class="gallery-item" aria-label="Open {alt_text} in viewer">
+            <img src="/photos/main/{image}"
+                 alt="{alt_text}"
+                 loading="lazy"
+                 sizes="(max-width: 500px) 100vw, (max-width: 650px) calc(50vw - 1.5em), (max-width: 900px) calc(33vw - 1.5em), calc(25vw - 1.5em)">
         </a>
     </div>''')
 
