@@ -1,5 +1,11 @@
 :root {
-  color-scheme: dark;
+    color-scheme: dark;
+}
+
+::-webkit-scrollbar { width: 0; }
+
+html {
+  scrollbar-width: none;
 }
 
 * {
@@ -26,8 +32,8 @@ body {
 }
 
 #wrapper {
-    margin-left: 1em;
-    margin-right: 1em;
+    padding-left: 16px;
+    padding-right: 16px;
     display: flex;
     flex-direction: column;
     min-height: calc(100vh - 1.5em);
@@ -39,14 +45,32 @@ main {
 }
 
 #topbar {
+    position: fixed;
+    top: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 32px);
+    max-width: calc(1100px - 32px);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
     display: grid;
     grid-template-columns: 52px 1fr;
-    width: 100%;
-    background-color: rgb(62, 62, 62);
+    background-color: rgba(62, 62, 62, 0.6);
+    backdrop-filter: blur(10px);
     padding: 10px;
     border-radius: 12px;
     align-items: center;
     user-select: none;
+    z-index: 1000;
+}
+
+#topbar.scrolled {
+    top: 0;
+    width: 100%;
+    max-width: 100%;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 16px;
 }
 
 .toph2 {
@@ -94,7 +118,7 @@ nav {
 }
 
 nav a {
-    font-size: 1.2em; 
+    font-size: 1.2em;
     text-decoration: none;
     background-color: rgb(32, 32, 32);
     padding: 10px;
@@ -148,7 +172,7 @@ nav a:hover {
 }
 
 img {
-  image-rendering: auto;
+    image-rendering: auto;
 }
 
 #logo {
@@ -182,6 +206,7 @@ img {
     grid-template-columns: repeat(2, 1fr);
     gap: 1em;
     width: 100%;
+    margin-top: 194px;
 }
 
 .photoGrid {
@@ -224,12 +249,14 @@ form {
     width: 100%;
 }
 
-input::placeholder, textarea::placeholder {
+input::placeholder,
+textarea::placeholder {
     color: white;
     font-size: 16px;
 }
 
-input, textarea {
+input,
+textarea {
     width: 100%;
     background-color: rgb(63, 63, 63);
     padding: 16px;
@@ -239,16 +266,17 @@ input, textarea {
     transition: box-shadow 0.2s ease-in-out;
 }
 
-input:focus, textarea:focus {
+input:focus,
+textarea:focus {
     outline: none;
-    box-shadow: 0 0 8px 2px #ffffff; 
+    box-shadow: 0 0 8px 2px #ffffff;
     transition: box-shadow 0.2s ease-in-out;
 }
 
 #submit {
     font-size: 1em;
     padding: 0.7em;
-    box-shadow: 0 0 0 0 #ffffff; 
+    box-shadow: 0 0 0 0 #ffffff;
 }
 
 textarea {
@@ -312,9 +340,83 @@ textarea {
     background-size: contain;
 }
 
+#lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    background: rgba(0, 0, 0, 0.95);
+    align-items: center;
+    justify-content: center;
+}
+
+#lightbox.open {
+    display: flex;
+}
+
+#lb-img {
+    max-width: calc(100vw - 120px);
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 4px;
+    user-select: none;
+}
+
+#lb-close {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2.2rem;
+    cursor: pointer;
+    line-height: 1;
+    padding: 8px 12px;
+    opacity: 0.75;
+}
+
+#lb-close:hover { opacity: 1; }
+
+#lb-prev, #lb-next {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.08);
+    border: none;
+    color: white;
+    font-size: 3rem;
+    cursor: pointer;
+    padding: 16px 20px;
+    border-radius: 8px;
+    opacity: 0.7;
+    line-height: 1;
+    transition: opacity 150ms, background 150ms;
+    user-select: none;
+}
+
+#lb-prev { left: 8px; }
+#lb-next { right: 8px; }
+
+#lb-prev:hover, #lb-next:hover {
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.18);
+}
+
+#lb-counter {
+    position: fixed;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    opacity: 0.6;
+    font-size: 0.9rem;
+    user-select: none;
+}
+
 /* Responsive Media Queries */
 
-@media (min-width: 650px){
+@media (min-width: 690px) {
     body {
         max-width: 1100px;
         margin-left: auto;
@@ -347,7 +449,7 @@ textarea {
     #topbar {
         grid-template-rows: 1fr;
     }
-    
+
     .flexcontent {
         flex-direction: row;
     }
@@ -356,7 +458,8 @@ textarea {
         width: auto;
     }
 
-    input, textarea {
+    input,
+    textarea {
         width: 1fr;
     }
 
@@ -364,7 +467,7 @@ textarea {
         margin-left: auto;
         margin-right: auto;
     }
-    
+
     #gallery img {
         transition: filter 200ms;
     }
@@ -382,7 +485,9 @@ textarea {
 
     #gallery {
         grid-template-columns: repeat(3, 1fr);
+        margin-top: 76px;
     }
+    
 }
 
 @media (min-width: 900px) {
@@ -405,7 +510,7 @@ textarea {
     }
 }
 
-@media (max-width: 410px){
+@media (max-width: 410px) {
     #topbar {
         grid-template-columns: 0px 100%;
     }
@@ -414,9 +519,8 @@ textarea {
         width: 0px;
     }
 
-    .topHeader{
+    .topHeader {
         margin-left: auto;
         margin-right: auto;
     }
 }
-
