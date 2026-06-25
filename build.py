@@ -15,7 +15,10 @@ image_elements = []
 for image in images:
     image_elements.append(f'''    <div class="photoGrid">
         <a href="/photos/full/{image}">
-            <img src="/photos/thumbs/{image}" alt="" loading="lazy">
+            <picture>
+                <source srcset="/photos/full/{image}" media="(max-width: 500px)">
+                <img src="/photos/thumbs/{image}" alt="" loading="lazy">
+            </picture>
         </a>
     </div>''')
 
