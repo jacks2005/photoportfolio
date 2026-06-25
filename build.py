@@ -1,11 +1,12 @@
 import os
 
-photos_folder = "./photos/main"
+thumbs_folder = "./photos/thumbs"
+full_folder = "./photos/full"
 template_page = "./template.html"
 home_page = "./index.html"
 
 images = sorted(
-    [f for f in os.listdir(photos_folder) if f.lower().endswith(('.webp', '.jpg', '.jpeg', '.png', '.avif'))],
+    [f for f in os.listdir(thumbs_folder) if f.lower().endswith(('.webp', '.jpg', '.jpeg', '.png', '.avif'))],
     key=lambda f: int(os.path.splitext(f)[0].split('-')[-1]) if os.path.splitext(f)[0].split('-')[-1].isdigit() else f,
     reverse=True
 )
@@ -13,8 +14,8 @@ images = sorted(
 image_elements = []
 for image in images:
     image_elements.append(f'''    <div class="photoGrid">
-        <a href="/photos/main/{image}">
-            <img src="/photos/main/{image}" alt="" loading="lazy">
+        <a href="/photos/full/{image}">
+            <img src="/photos/thumbs/{image}" alt="" loading="lazy">
         </a>
     </div>''')
 
