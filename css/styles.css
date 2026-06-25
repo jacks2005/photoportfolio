@@ -86,8 +86,9 @@ footer {
 
 .topHeader {
     width: 300px;
-    margin-bottom: -11px;
     shape-rendering: crispEdges;
+    font-family: "Ultra", serif;
+    font-size: 28px;
 }
 
 h2 {
@@ -515,12 +516,12 @@ textarea {
         grid-template-columns: 0px 100%;
     }
 
-    #logo {
-        width: 0px;
+    .topHeader {
+        grid-column: 1;
+        grid-row: 1;
     }
 
-    .topHeader {
-        margin-left: auto;
-        margin-right: auto;
+    #logo {
+        width: 0px;
     }
 }
