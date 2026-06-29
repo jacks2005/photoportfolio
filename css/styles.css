@@ -202,12 +202,59 @@ img {
     width: auto;
 }
 
+#collections {
+    margin-top: 178px;
+    margin-bottom: 16px;
+    display: flex;
+}
+
+.banner {
+    height: 100%;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    filter: brightness(60%);
+    transition: all 0.3s ease;
+    height: 250px;
+}
+
+.banner:hover {
+    filter: brightness(80%);
+    height: 275px;
+}
+
+.container {
+    width: 100%;
+    position: relative;
+    text-align: center;
+}
+
+.banner-text {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    pointer-events: none;
+}
+
+#ai-protest {
+    background-image: url("/ai-protest/photos/3.jpg");
+    background-size: cover;
+    background-position: 0;
+}
+
 #gallery {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1em;
     width: 100%;
-    margin-top: 178px;
 }
 
 .photoGrid {
@@ -486,7 +533,14 @@ textarea {
 
     #gallery {
         grid-template-columns: repeat(3, 1fr);
+    }
+
+    #collections {
         margin-top: 60px;
+    }
+
+    .banner-text {
+        font-size: 40px;
     }
     
 }
@@ -508,6 +562,10 @@ textarea {
 
     #gallery img {
         height: auto;
+    }
+
+    .banner-text {
+        font-size: 20px;
     }
 }
 

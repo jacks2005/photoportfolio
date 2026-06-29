@@ -91,6 +91,7 @@ nav a:hover::after {
     display: block;
     object-fit: contain;
     user-select: none;
+    cursor: pointer;
 }
 
 footer {
