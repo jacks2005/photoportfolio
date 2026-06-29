@@ -240,7 +240,8 @@ img {
     z-index: 999;
     text-align: center;
     font-size: 30px;
-    font-weight: bold;
+    font-family: "Roboto Slab", serif;
+    font-optical-sizing: auto;
     pointer-events: none;
 }
 
@@ -435,7 +436,7 @@ textarea {
     color: white;
     font-size: 3rem;
     cursor: pointer;
-    padding: 16px 20px;
+    padding: 16px 16px;
     border-radius: 8px;
     opacity: 0.7;
     line-height: 1;
