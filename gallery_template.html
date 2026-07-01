@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photography | Jack Simpson</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="icon" href="/photos/logo.webp" type="image/x-icon">
+    <meta name="description" content="Photography Portfolio">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Roboto+Slab:wght@100..900&family=Ultra&display=swap"
+        rel="stylesheet">
+    <meta name="color-scheme" content="dark">
+    <link rel="preload" href="/photos/logo.webp" as="image">
+    <link rel="preload" href="/photos/Instagram_Glyph_White.svg" as="image">
+    <link rel="preload" href="/photos/GitHub_Invertocat_White.svg" as="image">
+    <script src="/js/script.js" defer></script>
+</head>
+
+<body>
+    <div id="wrapper">
+        <header>
+            <div id="topbar">
+                <div id="logo"></div>
+                <div class="topHeader" onclick="window.location.href='/'">Jack Simpson</div>
+                <nav>
+                    <a href="https://www.instagram.com/jgs259/" target="_blank" class="linkButton"
+                        id="Instagram-button">
+                        <div id="Instagram-logo"></div>Instagram
+                    </a>
+                    <a href="https://github.com/jacks2005" target="_blank" class="linkButton" id="github-button">
+                        <div id="github-logo"></div>GitHub
+                    </a>
+                </nav>
+            </div>
+        </header>
+
+        <main>
+
+            <div id="gallery">
+                <!-- PHOTOS_INJECT -->
+            </div>
+
+        </main>
+
+        <footer>
+            <div class="footertext">&copy; Jack Simpson</div>
+        </footer>
+
+    </div>
+
+    <div id="lightbox">
+        <button id="lb-close">&times;</button>
+        <button id="lb-prev">&#8249;</button>
+        <img id="lb-img" src="" alt="">
+        <button id="lb-next">&#8250;</button>
+        <div id="lb-counter"></div>
+    </div>
+</body>
+
+</html>
