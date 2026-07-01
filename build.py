@@ -84,9 +84,10 @@ def build_home():
             continue
 
         cover = images[0]
+        display_name = collection_dir.name.replace('_', ' ').title()
         page_links.append(f'''<div class="container">
                 <div class="banner" id="{collection_dir.name}" style="background-image: url('/photos/{collection_dir.name}/full/{cover.name}'); background-size: cover; background-position: center;" onclick="location.href='/{collection_dir.name}'"></div>
-                <div class="banner-text">{collection_dir.name.title()}</div>
+                <div class="banner-text">{display_name}</div>
             </div>''')
 
     pages = "\n".join(page_links)

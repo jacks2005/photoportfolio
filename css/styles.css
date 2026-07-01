@@ -2,10 +2,12 @@
     color-scheme: dark;
 }
 
-::-webkit-scrollbar { width: 0; }
+::-webkit-scrollbar {
+    width: 0;
+}
 
 html {
-  scrollbar-width: none;
+    scrollbar-width: none;
 }
 
 * {
@@ -102,12 +104,6 @@ h2 {
     gap: 10px;
     align-items: center;
     justify-content: center;
-}
-
-.linkButton:hover {
-    transition: background-color 300ms, color 300ms;
-    background-color: rgb(255, 255, 255);
-    color: black;
 }
 
 nav {
@@ -213,7 +209,6 @@ img {
 }
 
 .banner {
-    height: 100%;
     border-radius: 12px;
     display: flex;
     justify-content: center;
@@ -221,12 +216,7 @@ img {
     cursor: pointer;
     filter: brightness(60%);
     transition: all 0.3s ease;
-    height: 250px;
-}
-
-.banner:hover {
-    filter: brightness(80%);
-    height: 275px;
+    height: 350px;
 }
 
 .container {
@@ -243,10 +233,10 @@ img {
     transform: translate(-50%, -50%);
     z-index: 999;
     text-align: center;
-    font-size: 30px;
     font-family: "Roboto Slab", serif;
     font-optical-sizing: auto;
     pointer-events: none;
+    font-size: 40px;
 }
 
 #ai-protest {
@@ -356,20 +346,6 @@ textarea {
     background-color: rgb(83, 83, 83);
 }
 
-#Instagram-button:hover {
-    #Instagram-logo {
-        transition: filter 300ms;
-        filter: invert(100%);
-    }
-}
-
-#github-button:hover {
-    #github-logo {
-        transition: filter 300ms;
-        filter: invert(100%);
-    }
-}
-
 #Instagram-logo {
     background-image: url(/photos/_site_images/Instagram_Glyph_White.svg);
     width: 25px;
@@ -430,9 +406,12 @@ textarea {
     opacity: 0.75;
 }
 
-#lb-close:hover { opacity: 1; }
+#lb-close:hover {
+    opacity: 1;
+}
 
-#lb-prev, #lb-next {
+#lb-prev,
+#lb-next {
     position: fixed;
     top: 50%;
     transform: translateY(-50%);
@@ -449,10 +428,16 @@ textarea {
     user-select: none;
 }
 
-#lb-prev { left: 8px; }
-#lb-next { right: 8px; }
+#lb-prev {
+    left: 8px;
+}
 
-#lb-prev:hover, #lb-next:hover {
+#lb-next {
+    right: 8px;
+}
+
+#lb-prev:hover,
+#lb-next:hover {
     opacity: 1;
     background: rgba(255, 255, 255, 0.18);
 }
@@ -546,10 +531,30 @@ textarea {
         margin-top: 60px;
     }
 
-    .banner-text {
-        font-size: 40px;
+    .banner:hover {
+        height: 500px;
+        filter: brightness(80%);
     }
-    
+
+    .linkButton:hover {
+        transition: background-color 300ms, color 300ms;
+        background-color: rgb(255, 255, 255);
+        color: black;
+    }
+
+    #Instagram-button:hover {
+        #Instagram-logo {
+            transition: filter 300ms;
+            filter: invert(100%);
+        }
+    }
+
+    #github-button:hover {
+        #github-logo {
+            transition: filter 300ms;
+            filter: invert(100%);
+        }
+    }
 }
 
 @media (min-width: 900px) {
@@ -571,9 +576,7 @@ textarea {
         height: auto;
     }
 
-    .banner-text {
-        font-size: 20px;
-    }
+
 }
 
 @media (max-width: 410px) {
