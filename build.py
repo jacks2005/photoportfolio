@@ -6,7 +6,6 @@ GALLERY_TEMPLATE = Path("gallery_template.html")
 HOME_PAGE = Path("index.html")
 
 RAW_PHOTO_EXTENSIONS = ('.jpg', '.jpeg', '.tif', '.tiff')
-FULL_LONG_EDGE = 2400
 FULL_QUALITY = 80
 THUMB_LONG_EDGE = 600
 THUMB_QUALITY = 60
@@ -59,7 +58,6 @@ def convert_photos():
                 img = img.convert("RGB")
 
                 full_img = img.copy()
-                full_img.thumbnail((FULL_LONG_EDGE, FULL_LONG_EDGE), Image.LANCZOS)
                 full_img.save(full_dir / name, "webp", quality=FULL_QUALITY, icc_profile=icc_profile, exif=exif)
 
                 thumb_img = img.copy()
