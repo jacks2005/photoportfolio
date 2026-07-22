@@ -111,7 +111,6 @@ def build_gallery(collection_dir):
         image_elements.append(f'''    <div class="photoGrid">
             <a href="/photos/{collection_dir.name}/full/{image.name}">
                 <picture>
-                    <source srcset="/photos/{collection_dir.name}/full/{image.name}" media="(max-width: 500px)">
                     <img src="/photos/{collection_dir.name}/thumbs/{image.name}" alt="" loading="lazy">
                 </picture>
             </a>

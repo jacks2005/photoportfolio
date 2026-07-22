@@ -464,7 +464,7 @@ textarea {
     #lb-img {
         max-width: 100vw;
         max-height: calc(100vh - 76px - env(safe-area-inset-bottom));
-        max-height: calc(100svh - 76px - env(safe-area-inset-bottom));
+        max-height: calc(100dvh - 76px - env(safe-area-inset-bottom));
         border-radius: 0;
     }
 
@@ -605,18 +605,8 @@ textarea {
 
 @media (max-width: 500px) {
     #gallery {
-        grid-template-columns: repeat(1, 1fr);
+        grid-template-columns: repeat(2, 1fr);
     }
-
-    .photoGrid {
-        aspect-ratio: unset;
-    }
-
-    #gallery img {
-        height: auto;
-    }
-
-
 }
 
 @media (max-width: 410px) {
