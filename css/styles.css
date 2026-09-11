@@ -38,8 +38,6 @@ main { max-width: 1680px; margin: 0 auto; padding: 0 var(--gutter); min-height: 
 .intro-topline, .intro-bottom { display: flex; align-items: center; justify-content: space-between; }
 .intro-topline { color: var(--muted); }
 .home-intro h1 { font-size: clamp(72px, 8.1vw, 126px); line-height: .9; letter-spacing: -.04em; margin: 30px 0 18px; }
-.title-indent { margin-left: 12.5%; font-style: italic; }
-.title-period { font-style: normal; }
 .intro-bottom { min-height: 65px; gap: 24px; }
 .intro-bottom p { font-size: 14px; line-height: 1.5; }
 .intro-bottom > .eyebrow { color: var(--muted); align-self: flex-end; padding-bottom: 6px; }
@@ -169,7 +167,6 @@ figcaption { display: flex; justify-content: space-between; flex-wrap: wrap; gap
     .intro-topline { align-items: flex-start; gap: 20px; }
     .intro-topline .eyebrow:first-child { max-width: 160px; }
     .home-intro h1 { font-size: clamp(58px, 13.8vw, 82px); }
-    .title-indent { margin-left: 8%; }
     .intro-bottom { gap: 20px; }
     .intro-bottom p { font-size: 14px; }
     .project-row { grid-template-columns: 28px 1fr 60px 18px; gap: 8px; }

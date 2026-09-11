@@ -299,7 +299,7 @@ def build_archive(collections, output_root):
     for c in collections:
         if c["slug"] != "all":
             groups[c["year"]].append(c)
-    content = '<section class="page-heading"><p class="eyebrow">COLLECTION DIRECTORY</p><h1>Archive</h1><p class="intro-copy">Places, observations, and collected moments.</p></section>'
+    content = '<section class="page-heading"><p class="eyebrow">COLLECTION DIRECTORY</p><h1>Archive</h1></section>'
     content += '<div class="archive-directory">'
     for year in sorted(groups, key=lambda y: y or 0, reverse=True):
         content += f'<section class="archive-year"><h2>{year or "Undated"}</h2><div>'
