@@ -1,54 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Photography | Jack Simpson</title>
-    <link rel="stylesheet" href="/css/styles.css">
-    <link rel="icon" href="/photos/_site_images/logo.webp" type="image/x-icon">
-    <meta name="description" content="Photography Portfolio">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Roboto+Slab:wght@100..900&family=Ultra&display=swap"
-        rel="stylesheet">
-    <meta name="color-scheme" content="dark">
-    <link rel="preload" href="/photos/logo.webp" as="image">
-    <link rel="preload" href="/_site_images/photos/Instagram_Glyph_White.svg" as="image">
-    <link rel="preload" href="/_site_images/photos/GitHub_Invertocat_White.svg" as="image">
-    <script src="/js/script.js" defer></script>
-</head>
-
-<body>
-    <div id="wrapper">
-        <header>
-            <div id="topbar">
-                <div id="logo"></div>
-                <div class="topHeader">Jack Simpson</div>
-                <nav>
-                    <a href="https://www.instagram.com/jgs259/" target="_blank" class="linkButton"
-                        id="Instagram-button">
-                        <div id="Instagram-logo"></div>Instagram
-                    </a>
-                    <a href="https://github.com/jacks2005" target="_blank" class="linkButton" id="github-button">
-                        <div id="github-logo"></div>GitHub
-                    </a>
-                </nav>
-            </div>
-        </header>
-
-        <main>
-            <div id="collections">
-                <!-- PAGES_INJECT -->
-            </div>
-        </main>
-
-        <footer>
-            <div class="footertext">&copy; Jack Simpson</div>
-        </footer>
-
+<section class="home-intro">
+    <div class="intro-topline"><span class="eyebrow">INDEPENDENT PHOTOGRAPHIC WORK</span><span class="eyebrow">$period</span></div>
+    <h1>Photographic<br><span class="title-indent">archive<span class="title-period">.</span></span></h1>
+    <div class="intro-bottom"><p>Places, people, and<br>passing moments.</p><span class="eyebrow">SELECTED COLLECTIONS / $count</span></div>
+</section>
+<section class="project-index" aria-label="Selected projects">
+    <div class="project-list">
+        <div class="index-heading"><span>NO.</span><span>PROJECT INDEX</span><span>YEAR</span><span aria-hidden="true">↙</span></div>
+        $rows
+        $all_link
     </div>
-</body>
-
-</html>
+    <aside class="preview-panel" aria-label="Project preview">
+        <div class="preview-topline"><span>SELECTED VIEW</span><span aria-hidden="true">[ + ]</span></div>
+        $preview
+    </aside>
+</section>
