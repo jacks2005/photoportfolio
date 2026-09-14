@@ -58,9 +58,36 @@ class GeneratorTests(unittest.TestCase):
                 image.thumbnail((40, 40))
             image.save(path, exif=exif)
 
+    def raw_photo(self, slug, filename, date=None):
+        exif = Image.Exif()
+        if date:
+            exif[34665] = {36867: date}
+        path = self.photos / slug / filename
+        path.parent.mkdir(parents=True, exist_ok=True)
+        Image.new('RGB', (80, 60), '#667788').save(path, exif=exif)
+
     def generate(self):
         with redirect_stdout(StringIO()):
             return build.build_site(self.output, self.overrides)
+
+    def test_converter_numbers_raw_photos_by_capture_date(self):
+        self.raw_photo('berlin', 'a-latest.jpg', '2024:04:30 10:00:00')
+        self.raw_photo('berlin', 'm-undated.jpg')
+        self.raw_photo('berlin', 'z-earliest.jpg', '2024:04:29 10:00:00')
+
+        with redirect_stdout(StringIO()):
+            build.convert_photos()
+
+        images = [
+            build.read_photo('berlin', self.photos / f'berlin/thumbs/image-{number}.webp')
+            for number in range(1, 4)
+        ]
+        self.assertEqual([photo['date'] for photo in images], [
+            None,
+            build.capture_date('2024:04:29 10:00:00'),
+            build.capture_date('2024:04:30 10:00:00'),
+        ])
+        self.assertFalse(any((self.photos / 'berlin').glob('*.jpg')))
 
     def test_inventory_order_dates_and_all_are_separate(self):
         self.photo('all', 'image-1.webp', date='2020:06:16 10:00:00')

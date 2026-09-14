@@ -28,13 +28,20 @@ def sorted_thumbs(thumbs_dir):
     return sorted((f for f in thumbs_dir.iterdir() if f.is_file() and f.suffix.lower() == ".webp"), key=key, reverse=True)
 
 
-def convert_photos():
-    from PIL import Image
+def raw_photo_sort_key(path):
+    with Image.open(path) as img:
+        date = capture_date(img.getexif().get_ifd(34665).get(36867))
+    # Imported photos receive ascending numbers, which the galleries display in
+    # reverse. Put undated files first so they appear after dated photographs.
+    return (date is not None, date or datetime.min, path.name.casefold(), path.name)
 
+
+def convert_photos():
     for collection_dir in get_collections():
         raw_files = sorted(
-            f for f in collection_dir.iterdir()
-            if f.is_file() and f.suffix.lower() in RAW_PHOTO_EXTENSIONS
+            (f for f in collection_dir.iterdir()
+             if f.is_file() and f.suffix.lower() in RAW_PHOTO_EXTENSIONS),
+            key=raw_photo_sort_key,
         )
         if not raw_files:
             continue
