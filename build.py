@@ -201,10 +201,13 @@ def inventory(overrides_path=Path("collections.json")):
     return collections
 
 
-def image_tag(photo, alt, *, eager=False, sizes="(max-width: 899px) calc(100vw - 40px), 50vw", css=""):
-    return (f'<img class="{e(css)}" src="{e(photo["thumb"])}" '
-            f'srcset="{e(photo["thumb"])} {photo["thumb_width"]}w, {e(photo["full"])} {photo["width"]}w" '
-            f'sizes="{e(sizes)}" width="{photo["width"]}" height="{photo["height"]}" '
+def image_tag(photo, alt, *, eager=False, sizes="(max-width: 899px) calc(100vw - 40px), 50vw", css="", thumbnail_only=False):
+    responsive = (f'srcset="{e(photo["thumb"])} {photo["thumb_width"]}w, {e(photo["full"])} {photo["width"]}w" '
+                  f'sizes="{e(sizes)}" ') if not thumbnail_only else ""
+    width = photo["thumb_width"] if thumbnail_only else photo["width"]
+    height = photo["thumb_height"] if thumbnail_only else photo["height"]
+    return (f'<img class="{e(css)}" src="{e(photo["thumb"])}" {responsive}'
+            f'width="{width}" height="{height}" '
             f'alt="{e(alt)}" loading="{"eager" if eager else "lazy"}" decoding="async">')
 
 
@@ -252,12 +255,12 @@ def build_home(collections, output_root):
                     f'data-count="{len(c["images"]):03}" data-filename="{e(photo["name"])}">'
                     f'<span class="project-number">{c["number"]}</span><span class="project-name">{e(c["title"])}</span>'
                     f'<span class="project-year">{c["year"] or "Undated"}</span><span class="project-arrow" aria-hidden="true">↗</span>'
-                    + image_tag(photo, c["title"], eager=index == 0, css="mobile-preview") + '</a>')
+                    + image_tag(photo, c["title"], eager=index == 0, css="mobile-preview", thumbnail_only=True) + '</a>')
     preview = '<p class="empty-state">No projects in the archive yet.</p>'
     if projects:
         c, photo = projects[0], projects[0]["cover"]
         preview = (f'<a class="preview-image" id="preview-link" href="{e(c["url"])}" aria-label="Open {e(c["title"])}">'
-                   + image_tag(photo, c["title"], eager=True, css="preview-photo") + '</a>'
+                   + image_tag(photo, c["title"], eager=True, css="preview-photo", thumbnail_only=True) + '</a>'
                    f'<div class="preview-caption"><span id="preview-number">PROJECT_{c["number"]}</span><span id="preview-filename">{e(photo["name"])}</span></div>'
                    f'<h2 id="preview-title">{e(c["title"])}</h2><div class="preview-meta"><span id="preview-date">{e(c["dates"])}</span>'
                    f'<span id="preview-count">{len(c["images"]):03} photographs</span></div>')

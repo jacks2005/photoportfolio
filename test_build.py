@@ -103,6 +103,10 @@ class GeneratorTests(unittest.TestCase):
         self.assertIn('1/500 s / f/8 / ISO 200', berlin['images'][0]['metadata'])
         home = Page((self.output / 'index.html').read_text())
         self.assertEqual(sum('data-project' in a for _, a in home.tags), 2)
+        home_images = [attributes for tag, attributes in home.tags if tag == 'img']
+        self.assertTrue(home_images)
+        self.assertTrue(all('/thumbs/' in image['src'] for image in home_images))
+        self.assertTrue(all('srcset' not in image for image in home_images))
         self.assertEqual(len(Page((self.output / 'all/index.html').read_text()).photos()), 1)
 
     def test_undated_and_invalid_capture_dates_ignore_export_time(self):
