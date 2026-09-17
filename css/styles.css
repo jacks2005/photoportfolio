@@ -59,7 +59,7 @@ button { border: 0; border-radius: 0; }
 }
 .header-note { display: flex; align-items: center; gap: 32px; font: 12px var(--mono); color: var(--muted); }
 main { max-width: 1680px; margin: 0 auto; padding: 0 var(--gutter); min-height: calc(100svh - 166px); }
-.eyebrow, .index-heading, .project-number, .project-year, .preview-topline, .preview-caption, .preview-meta, figcaption, .project-metadata, .archive-count, .archive-heading, .site-footer, .back-link, .text-link, .lightbox-header, .lightbox-footer { font-family: var(--mono); font-size: 12px; font-weight: 400; }
+.eyebrow, .index-heading, .project-number, .project-year, .preview-topline, .preview-caption, .preview-meta, figcaption, .project-metadata, .archive-count, .archive-heading, .site-footer, .back-link, .text-link, .intro-copy, .lightbox-header, .lightbox-footer { font-family: var(--mono); font-size: 12px; font-weight: 400; }
 .eyebrow { letter-spacing: .055em; }
 .home-intro { padding: 48px 0 30px; }
 .intro-topline, .intro-bottom { display: flex; align-items: center; justify-content: space-between; }

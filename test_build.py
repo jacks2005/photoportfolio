@@ -113,6 +113,7 @@ class GeneratorTests(unittest.TestCase):
         self.assertTrue(all('/thumbs/' in image['src'] for image in home_images))
         self.assertTrue(all('srcset' not in image for image in home_images))
         self.assertEqual(len(Page(read_html(self.output / 'all/index.html')).photos()), 1)
+        self.assertIn('A chronological directory of photographic projects.', read_html(self.output / 'archive/index.html'))
 
     def test_undated_and_invalid_capture_dates_ignore_export_time(self):
         self.photo('ghosts', 'image-1.webp', exported='2026:09:01 12:00:00')
