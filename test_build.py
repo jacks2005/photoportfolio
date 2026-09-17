@@ -12,6 +12,10 @@ from PIL import Image
 import build
 
 
+def read_html(path):
+    return path.read_text(encoding='utf-8')
+
+
 class Page(HTMLParser):
     def __init__(self, html):
         super().__init__()
@@ -101,13 +105,14 @@ class GeneratorTests(unittest.TestCase):
         self.assertEqual(berlin['cover']['name'], 'image-10.webp')
         self.assertEqual(berlin['dates'], '29.04.2024 — 30.04.2024')
         self.assertIn('1/500 s / f/8 / ISO 200', berlin['images'][0]['metadata'])
-        home = Page((self.output / 'index.html').read_text())
+        home = Page(read_html(self.output / 'index.html'))
         self.assertEqual(sum('data-project' in a for _, a in home.tags), 2)
+        self.assertEqual(sum('data-theme-toggle' in a for _, a in home.tags), 1)
         home_images = [attributes for tag, attributes in home.tags if tag == 'img']
         self.assertTrue(home_images)
         self.assertTrue(all('/thumbs/' in image['src'] for image in home_images))
         self.assertTrue(all('srcset' not in image for image in home_images))
-        self.assertEqual(len(Page((self.output / 'all/index.html').read_text()).photos()), 1)
+        self.assertEqual(len(Page(read_html(self.output / 'all/index.html')).photos()), 1)
 
     def test_undated_and_invalid_capture_dates_ignore_export_time(self):
         self.photo('ghosts', 'image-1.webp', exported='2026:09:01 12:00:00')
@@ -116,7 +121,7 @@ class GeneratorTests(unittest.TestCase):
         self.assertIsNone(c['year'])
         self.assertEqual(c['dates'], 'Undated')
         self.assertNotIn('2026', c['images'][0]['metadata'])
-        self.assertIn('<h2>Undated</h2>', (self.output / 'archive/index.html').read_text())
+        self.assertIn('<h2>Undated</h2>', read_html(self.output / 'archive/index.html'))
 
     def test_overrides_escape_text_and_leave_photo_order_intact(self):
         self.photo('berlin', 'image-1.webp')
@@ -126,11 +131,11 @@ class GeneratorTests(unittest.TestCase):
         c = self.generate()[0]
         self.assertEqual(c['year'], 2025)
         self.assertEqual(c['cover']['name'], 'image-1.webp')
-        home = (self.output / 'index.html').read_text()
+        home = read_html(self.output / 'index.html')
         self.assertNotIn('<script>alert', home)
         self.assertIn('&lt;script&gt;', home)
         self.assertIn('$title', home)
-        page = Page((self.output / 'berlin/index.html').read_text())
+        page = Page(read_html(self.output / 'berlin/index.html'))
         self.assertTrue(page.photos()[0]['href'].endswith('image-2.webp'))
         self.assertEqual(page.photos()[0]['data-title'], title + ' — photograph 001')
         self.assertIn('A "lens" & more', page.photos()[0]['data-metadata'])
@@ -147,7 +152,7 @@ class GeneratorTests(unittest.TestCase):
     def test_empty_collections_and_empty_site(self):
         (self.photos / 'empty/thumbs').mkdir(parents=True)
         self.assertEqual(self.generate(), [])
-        self.assertIn('No projects', (self.output / 'index.html').read_text())
+        self.assertIn('No projects', read_html(self.output / 'index.html'))
         self.assertFalse((self.output / 'empty').exists())
         self.assertFalse((self.output / 'info/index.html').exists())
 
@@ -156,7 +161,7 @@ class GeneratorTests(unittest.TestCase):
             self.photo('mixed', f'image-{i}.webp', size=size)
         self.overrides.write_text('{}')
         self.generate()
-        html = (self.output / 'mixed/index.html').read_text()
+        html = read_html(self.output / 'mixed/index.html')
         self.assertNotIn('class="portrait-pair"', html)
         self.assertEqual(html.count('class="editorial-row"'), 5)
         page = Page(html)
@@ -192,7 +197,7 @@ class GeneratorTests(unittest.TestCase):
             'photo_layouts': {'image-5.webp': 'pair-next', 'image-3.webp': 'left', 'image-2.webp': 'right'}
         }}))
         self.generate()
-        html = (self.output / 'custom/index.html').read_text()
+        html = read_html(self.output / 'custom/index.html')
         page = Page(html)
         self.assertEqual([a['data-filename'] for a in page.photos()], [f'image-{i}.webp' for i in range(6, 0, -1)])
         self.assertEqual(html.count('class="portrait-pair"'), 1)
@@ -204,7 +209,7 @@ class GeneratorTests(unittest.TestCase):
             self.photo('custom', f'image-{i}.webp', size=(40, 60))
         self.overrides.write_text(json.dumps({'custom': {'photo_layouts': {'image-1.webp': 'solo'}}}))
         self.generate()
-        html = (self.output / 'custom/index.html').read_text()
+        html = read_html(self.output / 'custom/index.html')
         self.assertNotIn('class="portrait-pair"', html)
         self.assertEqual(html.count('class="editorial-row"'), 3)
 
@@ -212,7 +217,7 @@ class GeneratorTests(unittest.TestCase):
         for i in range(1, 7):
             self.photo('custom', f'image-{i}.webp')
         self.generate()
-        page = Page((self.output / 'custom/index.html').read_text())
+        page = Page(read_html(self.output / 'custom/index.html'))
         classes = [attrs['class'].split() for tag, attrs in page.tags if tag == 'figure']
         self.assertEqual(len(classes), 6)
         self.assertTrue(all('wide' in value or 'centered' in value for value in classes))
@@ -223,7 +228,7 @@ class GeneratorTests(unittest.TestCase):
             self.photo('custom', f'image-{i}.webp')
         self.overrides.write_text(json.dumps({'custom': {'photo_layouts': {'image-2.webp': 'pair-next'}}}))
         self.generate()
-        html = (self.output / 'custom/index.html').read_text()
+        html = read_html(self.output / 'custom/index.html')
         self.assertEqual(html.count('class="portrait-pair"'), 1)
         self.assertEqual(len(Page(html).photos()), 2)
 

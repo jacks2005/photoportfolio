@@ -135,7 +135,7 @@ def read_photo(slug, thumb):
 
 
 def inventory(overrides_path=Path("collections.json")):
-    overrides = json.loads(overrides_path.read_text()) if overrides_path.exists() else {}
+    overrides = json.loads(overrides_path.read_text(encoding="utf-8")) if overrides_path.exists() else {}
     collections = []
     project_number = 0
     for directory in get_collections():
@@ -230,7 +230,7 @@ def photo_figure(photo, collection, index, *, layout="", caption=False, compact=
 
 
 def render(template, **values):
-    return Template((TEMPLATE_ROOT / template).read_text()).substitute(values)
+    return Template((TEMPLATE_ROOT / template).read_text(encoding="utf-8")).substitute(values)
 
 
 def write_page(output_root, route, title, content, *, active="", lightbox=False, page_class=""):
@@ -242,7 +242,7 @@ def write_page(output_root, route, title, content, *, active="", lightbox=False,
                   lightbox=render("lightbox_template.html") if lightbox else "")
     destination = output_root / route / "index.html"
     destination.parent.mkdir(parents=True, exist_ok=True)
-    destination.write_text("\n".join(line.rstrip() for line in page.splitlines()) + "\n")
+    destination.write_text("\n".join(line.rstrip() for line in page.splitlines()) + "\n", encoding="utf-8")
 
 
 def build_home(collections, output_root):

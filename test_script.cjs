@@ -53,7 +53,36 @@ function viewer() {
 test('shared script is safe on a page without any gallery', () => {
     assert.doesNotThrow(() => vm.runInNewContext(script, {
         document: { querySelectorAll: () => [], querySelector: () => null, getElementById: () => null }
-    }));
+}));
+
+test('theme toggle persists the inverse of the detected system theme', () => {
+    const events = {};
+    const attributes = {};
+    const toggle = {
+        addEventListener: (name, callback) => { events[name] = callback; },
+        setAttribute: (name, value) => { attributes[name] = value; },
+    };
+    const document = {
+        documentElement: { dataset: { theme: 'dark' } },
+        querySelectorAll: () => [],
+        querySelector: selector => selector === '[data-theme-toggle]' ? toggle : null,
+        getElementById: () => null,
+    };
+    const stored = {};
+    const localStorage = {
+        getItem: key => stored[key] ?? null,
+        setItem: (key, value) => { stored[key] = value; },
+    };
+    const matchMedia = () => ({ matches: true, addEventListener() {} });
+    vm.runInNewContext(script, { document, localStorage, matchMedia });
+    assert.equal(attributes['aria-label'], 'Switch to light mode');
+    assert.equal(attributes['aria-pressed'], 'true');
+    events.click();
+    assert.equal(document.documentElement.dataset.theme, 'light');
+    assert.equal(stored.theme, 'light');
+    assert.equal(attributes['aria-label'], 'Switch to dark mode');
+    assert.equal(attributes['aria-pressed'], 'false');
+});
 });
 
 test('modified clicks preserve direct image navigation', () => {

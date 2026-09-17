@@ -1,6 +1,39 @@
 (() => {
     'use strict';
 
+    const themeToggle = document.querySelector('[data-theme-toggle]');
+    const root = document.documentElement;
+    if (themeToggle && root) {
+        const systemTheme = typeof matchMedia === 'function' ? matchMedia('(prefers-color-scheme: dark)') : null;
+        let savedTheme = null;
+        try {
+            const saved = localStorage.getItem('theme');
+            savedTheme = saved === 'light' || saved === 'dark' ? saved : null;
+        } catch {}
+
+        const currentTheme = () => root.dataset.theme || (systemTheme?.matches ? 'dark' : 'light');
+        const updateToggle = () => {
+            const dark = currentTheme() === 'dark';
+            const label = `Switch to ${dark ? 'light' : 'dark'} mode`;
+            themeToggle.setAttribute('aria-label', label);
+            themeToggle.setAttribute('title', label);
+            themeToggle.setAttribute('aria-pressed', String(dark));
+        };
+
+        themeToggle.addEventListener('click', () => {
+            savedTheme = currentTheme() === 'dark' ? 'light' : 'dark';
+            root.dataset.theme = savedTheme;
+            try { localStorage.setItem('theme', savedTheme); } catch {}
+            updateToggle();
+        });
+        systemTheme?.addEventListener('change', event => {
+            if (savedTheme) return;
+            root.dataset.theme = event.matches ? 'dark' : 'light';
+            updateToggle();
+        });
+        updateToggle();
+    }
+
     // The index is progressively enhanced: every project remains a normal link.
     const projects = [...document.querySelectorAll('[data-project]')];
     const previewImage = document.querySelector('.preview-photo');
