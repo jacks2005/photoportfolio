@@ -65,6 +65,16 @@ main { max-width: 1680px; margin: 0 auto; padding: 0 var(--gutter); min-height: 
 .intro-topline, .intro-bottom { display: flex; align-items: center; justify-content: space-between; }
 .intro-topline { color: var(--muted); }
 .home-intro h1 { font-size: clamp(72px, 8.1vw, 126px); line-height: .9; letter-spacing: -.04em; margin: 30px 0 18px; }
+.intro-hero { display: grid; grid-template-columns: 55fr 45fr; align-items: center; gap: 36px; }
+.sensor-art { min-width: 0; margin-top: 24px; }
+.sensor-field { position: relative; aspect-ratio: 624 / 272; overflow: hidden; pointer-events: none; }
+.sensor-canvas, .sensor-fallback { display: block; width: 100%; height: 100%; }
+.sensor-canvas { position: absolute; inset: 0; color: var(--ink); opacity: 0; }
+.sensor-field.is-ready .sensor-canvas { opacity: 1; }
+.sensor-field.is-ready .sensor-fallback { visibility: hidden; }
+.sensor-fallback { background: url('/photos/_site_images/ascii-sensor.svg') center / contain no-repeat; }
+:root[data-theme="dark"] .sensor-fallback { filter: invert(1); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme]) .sensor-fallback { filter: invert(1); } }
 .intro-bottom { min-height: 65px; gap: 24px; }
 .intro-bottom p { font-size: 14px; line-height: 1.5; }
 .intro-bottom > .eyebrow { color: var(--muted); align-self: flex-end; padding-bottom: 6px; }
@@ -163,6 +173,8 @@ figcaption { display: flex; justify-content: space-between; flex-wrap: wrap; gap
     .site-header nav { gap: 22px; }
     .home-intro { padding-top: 32px; }
     .home-intro h1 { font-size: clamp(64px, 12vw, 106px); margin-top: 40px; }
+    .intro-hero { gap: 20px; }
+    .intro-hero h1 { font-size: clamp(64px, 8.5vw, 90px); }
     .intro-bottom { margin-top: 32px; }
     .intro-bottom > .eyebrow { max-width: 140px; text-align: right; }
     .project-index { display: block; margin-bottom: 60px; }
@@ -195,6 +207,8 @@ figcaption { display: flex; justify-content: space-between; flex-wrap: wrap; gap
     .intro-topline { align-items: flex-start; gap: 20px; }
     .intro-topline .eyebrow:first-child { max-width: 160px; }
     .home-intro h1 { font-size: clamp(58px, 13.8vw, 82px); }
+    .intro-hero { grid-template-columns: minmax(0, 1fr); gap: 0; }
+    .sensor-art { width: 100%; max-width: 420px; margin: 8px 0 0; }
     .intro-bottom { gap: 20px; }
     .intro-bottom p { font-size: 14px; }
     .project-row { grid-template-columns: 28px 1fr 60px 18px; gap: 8px; }
