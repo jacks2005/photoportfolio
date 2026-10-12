@@ -208,7 +208,7 @@ figcaption { display: flex; justify-content: space-between; flex-wrap: wrap; gap
     .intro-topline .eyebrow:first-child { max-width: 160px; }
     .home-intro h1 { font-size: clamp(58px, 13.8vw, 82px); }
     .intro-hero { grid-template-columns: minmax(0, 1fr); gap: 0; }
-    .sensor-art { width: 100%; max-width: 420px; margin: 8px 0 0; }
+    .sensor-art { width: calc(100% + var(--gutter) + var(--gutter)); margin: 8px calc(0px - var(--gutter)) 0; }
     .intro-bottom { gap: 20px; }
     .intro-bottom p { font-size: 14px; }
     .project-row { grid-template-columns: 28px 1fr 60px 18px; gap: 8px; }
